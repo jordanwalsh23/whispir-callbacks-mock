@@ -8,7 +8,7 @@ info:
   x-gist-filename: "callbacks-api-swagger.json"
   x-gist-description: "Whispir Callbacks API (Swagger v1)"
 host: "whispir-callbacks-mock.herokuapp.com"
-basePath: "/cors"
+basePath: "/"
 schemes:
 - "https"
 consumes:
