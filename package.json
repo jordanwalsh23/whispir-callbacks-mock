@@ -1,0 +1,16 @@
+{
+  "name": "whispir-callbacks-ap-is",
+  "version": "1.0.0",
+  "description": "Create and manage callbacks using Whispir's Communications API",
+  "main": "index.js",
+  "keywords": [
+    "swagger"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.9.*"
+  }
+}

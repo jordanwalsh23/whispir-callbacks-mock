@@ -1,0 +1,355 @@
+---
+swagger: "2.0"
+info:
+  description: "Create and manage callbacks using Whispir's Communications API"
+  version: "1.0.0"
+  title: "Whispir Callbacks APIs"
+  x-gist-id: "797bfa590a3de304ee68"
+  x-gist-filename: "callbacks-api-swagger.json"
+  x-gist-description: "Whispir Callbacks API (Swagger v1)"
+host: "whispir-callbacks-mock.herokuapp.com"
+basePath: "/cors"
+schemes:
+- "https"
+consumes:
+- "application/vnd.whispir.api-callback-v1+json"
+produces:
+- "application/vnd.whispir.api-callback-v1+json"
+paths:
+  /callbacks:
+    get:
+      tags:
+      - "callbacks"
+      summary: "Retrieve a listing of callbacks from the API"
+      operationId: "callbacksGet"
+      parameters: []
+      responses:
+        200:
+          description: "The callbacks are returned successfully"
+          schema:
+            $ref: "#/definitions/callbackArray"
+          examples:
+            application/json:
+              status: "1 to 1 of 1"
+              callbacks:
+              - id: "B3EDFE83DF389DFE"
+                name: "My awesome callback"
+                url: "https://www.apps.com/myapps"
+                auth:
+                  authType: "querystring"
+                  key: ""
+                contentType: "json"
+                removeHTML: "disabled"
+                email: "jwalsh@whispir.com"
+                callbacks:
+                  reply: "enabled"
+                  undeliverable: "enabled"
+        401:
+          description: "Username and Password is not correct"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided.\n"
+        422:
+          description: "The required fields were not provided in the request payload.\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again.\n"
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Callbacks"
+    post:
+      tags:
+      - "callbacks"
+      summary: "Create a new callback endpoint for Whispir to communicate with"
+      operationId: "callbacksPost"
+      parameters:
+      - in: "body"
+        name: "callback"
+        description: "The callback object to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/callbackRequest"
+      responses:
+        201:
+          description: "The callback has been created"
+          schema:
+            $ref: "#/definitions/callbackResponse"
+          examples:
+            application/json:
+              id: "B3EDFE83DF389DFE"
+              name: "My awesome callback"
+              url: "https://www.apps.com/myapps"
+              auth:
+                authType: "querystring"
+                key: ""
+              contentType: "json"
+              removeHTML: "disabled"
+              email: "jwalsh@whispir.com"
+              callbacks:
+                reply: "enabled"
+                undeliverable: "enabled"
+        401:
+          description: "Username and Password is not correct"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided.\n"
+        422:
+          description: "The required fields were not provided in the request payload.\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again.\n"
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Callbacks"
+  /callbacks/{callbackId}:
+    get:
+      tags:
+      - "callbacks"
+      summary: "Retrieve a listing of callbacks from the API"
+      operationId: "callbacksCallbackIdGet"
+      parameters:
+      - name: "callbackId"
+        in: "path"
+        description: "The callback object to be created."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "The callback is returned successfully"
+          schema:
+            $ref: "#/definitions/callbackResponse"
+          examples:
+            application/json:
+              id: "B3EDFE83DF389DFE"
+              name: "My awesome callback"
+              url: "https://www.apps.com/myapps"
+              auth:
+                authType: "querystring"
+                key: ""
+              contentType: "json"
+              removeHTML: "disabled"
+              email: "jwalsh@whispir.com"
+              callbacks:
+                reply: "enabled"
+                undeliverable: "enabled"
+        401:
+          description: "Username and Password is not correct"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided.\n"
+        422:
+          description: "The required fields were not provided in the request payload.\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again.\n"
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Callbacks"
+    put:
+      tags:
+      - "callbacks"
+      summary: "Update an existing callback endpoint"
+      operationId: "callbacksCallbackIdPut"
+      parameters:
+      - name: "callbackId"
+        in: "path"
+        description: "The callback object to be created."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "callback"
+        description: "The callback object to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/callbackRequest"
+      responses:
+        204:
+          description: "The callback has been updated"
+        401:
+          description: "Username and Password is not correct"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided.\n"
+        422:
+          description: "The required fields were not provided in the request payload.\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again.\n"
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Callbacks"
+    delete:
+      tags:
+      - "callbacks"
+      summary: "Delete an existing callback endpoint"
+      operationId: "callbacksCallbackIdDelete"
+      parameters:
+      - name: "callbackId"
+        in: "path"
+        description: "The callback object to be created."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "The callback has been deleted"
+        401:
+          description: "Username and Password is not correct"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided.\n"
+        422:
+          description: "The required fields were not provided in the request payload.\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again.\n"
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Callbacks"
+securityDefinitions:
+  Username and Password:
+    description: "The Username and Password of the Whispir user that is accessing\
+      \ the API."
+    type: "basic"
+  API Key:
+    description: "The API Key provided after creating an application in Whispir.io.\n"
+    type: "apiKey"
+    name: "apikey"
+    in: "query"
+definitions:
+  callbackArray:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        title: "the number of results returned"
+      callbacks:
+        type: "array"
+        items:
+          $ref: "#/definitions/callbackResponseSmall"
+  callbackResponseSmall:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        title: "The generated ID of the callback"
+      name:
+        type: "string"
+        title: "The name of the callback"
+      url:
+        type: "string"
+        title: "The URL of the callback"
+      link:
+        type: "array"
+        items:
+          $ref: "#/definitions/link"
+  callbackResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        title: "The generated ID of the callback"
+      name:
+        type: "string"
+        title: "The name of the callback object"
+      url:
+        type: "string"
+        title: "The url endpoint to access the callback"
+      auth:
+        $ref: "#/definitions/auth"
+      contentType:
+        type: "string"
+        title: "The content type that Whispir should send as the payload for the callback"
+        enum:
+        - "json"
+        - "xml"
+      removeHTML:
+        type: "string"
+        title: "Option to keep or remove HTML from email responses"
+        enum:
+        - "enabled"
+        - "disabled"
+      email:
+        type: "string"
+        title: "The email address to be notified when this callback fails."
+      callbacks:
+        $ref: "#/definitions/callbackType"
+      link:
+        type: "array"
+        items:
+          $ref: "#/definitions/link"
+  callbackRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        title: "The name of the callback object"
+      url:
+        type: "string"
+        title: "The url endpoint to access the callback"
+      auth:
+        $ref: "#/definitions/auth"
+      contentType:
+        type: "string"
+        title: "The content type that Whispir should send as the payload for the callback"
+        enum:
+        - "json"
+        - "xml"
+      removeHTML:
+        type: "string"
+        title: "Option to keep or remove HTML from email responses"
+        enum:
+        - "enabled"
+        - "disabled"
+      email:
+        type: "string"
+        title: "The email address to be notified when this callback fails."
+      callbacks:
+        $ref: "#/definitions/callbackType"
+  auth:
+    type: "object"
+    properties:
+      authType:
+        type: "string"
+        title: "The required authtype"
+        enum:
+        - "querystring"
+        - "httpheader"
+      key:
+        type: "string"
+        title: "The key that should be passed by the Whispir platform to authenticate\
+          \ this callback"
+    title: "The authentication properties for this callback"
+  callbackType:
+    type: "object"
+    properties:
+      reply:
+        type: "string"
+        title: "Whether replies should be delivered to this callback"
+        enum:
+        - "enabled"
+        - "disabled"
+      undeliverable:
+        type: "string"
+        title: "Whether undeliverable messages should be delivered to this callback"
+        enum:
+        - "enabled"
+        - "disabled"
+    title: "The types of callback that should be used for this callback"
+  link:
+    type: "object"
+    properties:
+      uri:
+        type: "string"
+        title: "The fully qualified URL to this referenced object"
+      rel:
+        type: "string"
+        title: "The descriptor about what this reference is"
+      method:
+        type: "string"
+        title: "The HTTP Method that should be used when accessing this object."
+    title: "The reference links for this object"
