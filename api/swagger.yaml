@@ -29,7 +29,7 @@ paths:
           schema:
             $ref: "#/definitions/callbackArray"
           examples:
-            application/json:
+            application/vnd.whispir.api-callback-v1+json:
               status: "1 to 1 of 1"
               callbacks:
               - id: "B3EDFE83DF389DFE"
@@ -76,7 +76,7 @@ paths:
           schema:
             $ref: "#/definitions/callbackResponse"
           examples:
-            application/json:
+            application/vnd.whispir.api-callback-v1+json:
               id: "B3EDFE83DF389DFE"
               name: "My awesome callback"
               url: "https://www.apps.com/myapps"
@@ -121,7 +121,7 @@ paths:
           schema:
             $ref: "#/definitions/callbackResponse"
           examples:
-            application/json:
+            application/vnd.whispir.api-callback-v1+json:
               id: "B3EDFE83DF389DFE"
               name: "My awesome callback"
               url: "https://www.apps.com/myapps"

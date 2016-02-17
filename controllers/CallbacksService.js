@@ -7,25 +7,6 @@ exports.callbacksGet = function(args, res, next) {
   
   
   var examples = {};
-  examples['application/json'] = {
-  "status" : "1 to 1 of 1",
-  "callbacks" : [ {
-    "id" : "B3EDFE83DF389DFE",
-    "name" : "My awesome callback",
-    "url" : "https://www.apps.com/myapps",
-    "auth" : {
-      "authType" : "querystring",
-      "key" : ""
-    },
-    "contentType" : "json",
-    "removeHTML" : "disabled",
-    "email" : "jwalsh@whispir.com",
-    "callbacks" : {
-      "reply" : "enabled",
-      "undeliverable" : "enabled"
-    }
-  } ]
-};
   
   if(Object.keys(examples).length > 0) {
     res.setHeader('Content-Type', 'application/json');
@@ -46,22 +27,6 @@ exports.callbacksPost = function(args, res, next) {
   
   
   var examples = {};
-  examples['application/json'] = {
-  "id" : "B3EDFE83DF389DFE",
-  "name" : "My awesome callback",
-  "url" : "https://www.apps.com/myapps",
-  "auth" : {
-    "authType" : "querystring",
-    "key" : ""
-  },
-  "contentType" : "json",
-  "removeHTML" : "disabled",
-  "email" : "jwalsh@whispir.com",
-  "callbacks" : {
-    "reply" : "enabled",
-    "undeliverable" : "enabled"
-  }
-};
   
   if(Object.keys(examples).length > 0) {
     res.setHeader('Content-Type', 'application/json');
@@ -82,22 +47,6 @@ exports.callbacksCallbackIdGet = function(args, res, next) {
   
   
   var examples = {};
-  examples['application/json'] = {
-  "id" : "B3EDFE83DF389DFE",
-  "name" : "My awesome callback",
-  "url" : "https://www.apps.com/myapps",
-  "auth" : {
-    "authType" : "querystring",
-    "key" : ""
-  },
-  "contentType" : "json",
-  "removeHTML" : "disabled",
-  "email" : "jwalsh@whispir.com",
-  "callbacks" : {
-    "reply" : "enabled",
-    "undeliverable" : "enabled"
-  }
-};
   
   if(Object.keys(examples).length > 0) {
     res.setHeader('Content-Type', 'application/json');
