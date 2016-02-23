@@ -305,7 +305,7 @@ paths:
           examples:
             application/json:
               status: "1 to 1 of 1"
-              call:
+              calls:
               - id: "B3EDFE83DF389DFE"
                 messageId: "ABC4857BCCF484575FCA"
                 messageLocation: "https://api.whispir.com/messages/ABC4857BCCF484575FCA"
@@ -319,10 +319,15 @@ paths:
                   channel: "SMS"
                   acknowledged: "09/01/13 13:22"
                   content: "Yes, I accept. Will I need to bring steel cap boots?"
-                callbackStatus: "FAILED"
+                callback:
+                  id: "B384FD38DCBADE38"
+                  url: "https://myurl.com/myapp"
+                  attemptedDate: "09/01/13 13:22"
+                  responseCode: 500
+                  responseMessage: "Internal Server Error"
                 link:
                 - rel: "updateCall"
-                  uri: "/callbacks/B3EDFE83DF389DFE/calls/B3EDFE83DF389DFE"
+                  uri: "/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE"
                   method: "PUT"
         401:
           description: "Username and Password is not correct\n"
@@ -536,6 +541,8 @@ definitions:
         $ref: "#/definitions/call_from"
       responseMessage:
         $ref: "#/definitions/call_responseMessage"
+      callback:
+        $ref: "#/definitions/call_callback"
       link:
         type: "array"
         items:
@@ -584,3 +591,16 @@ definitions:
       content:
         type: "string"
         title: "The content in the response"
+  call_callback:
+    properties:
+      attemptedDate:
+        type: "string"
+      id:
+        type: "string"
+      responseMessage:
+        type: "string"
+      url:
+        type: "string"
+      responseCode:
+        type: "number"
+        format: "int32"

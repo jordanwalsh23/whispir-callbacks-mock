@@ -18,7 +18,7 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
   var examples = {};
   examples['application/json'] = {
   "status" : "1 to 1 of 1",
-  "call" : [ {
+  "calls" : [ {
     "id" : "B3EDFE83DF389DFE",
     "messageId" : "ABC4857BCCF484575FCA",
     "messageLocation" : "https://api.whispir.com/messages/ABC4857BCCF484575FCA",
@@ -34,10 +34,16 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
       "acknowledged" : "09/01/13 13:22",
       "content" : "Yes, I accept. Will I need to bring steel cap boots?"
     },
-    "callbackStatus" : "FAILED",
+    "callback" : {
+      "id" : "B384FD38DCBADE38",
+      "url" : "https://myurl.com/myapp",
+      "attemptedDate" : "09/01/13 13:22",
+      "responseCode" : 500,
+      "responseMessage" : "Internal Server Error"
+    },
     "link" : [ {
       "rel" : "updateCall",
-      "uri" : "/callbacks/B3EDFE83DF389DFE/calls/B3EDFE83DF389DFE",
+      "uri" : "/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE",
       "method" : "PUT"
     } ]
   } ]
