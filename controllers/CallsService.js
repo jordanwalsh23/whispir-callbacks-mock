@@ -34,6 +34,7 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
       "acknowledged" : "09/01/13 13:22",
       "content" : "Yes, I accept. Will I need to bring steel cap boots?"
     },
+    "callbackStatus" : "FAILED",
     "link" : [ {
       "rel" : "updateCall",
       "uri" : "/callbacks/B3EDFE83DF389DFE/calls/B3EDFE83DF389DFE",
