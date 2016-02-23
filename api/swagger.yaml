@@ -33,8 +33,8 @@ paths:
               status: "1 to 1 of 1"
               callbacks:
               - id: "B3EDFE83DF389DFE"
-                name: "My awesome callback"
-                url: "https://www.apps.com/myapps"
+                name: "My Callback Server"
+                url: "https://www.myapplication.com/myapp"
                 auth:
                   authType: "querystring"
                   key: ""
@@ -44,6 +44,16 @@ paths:
                 callbacks:
                   reply: "enabled"
                   undeliverable: "enabled"
+                links:
+                - rel: "update"
+                  uri: "/callbacks/B3EDFE83DF389DFE"
+                  method: "put"
+                - rel: "self"
+                  uri: "/callbacks/B3EDFE83DF389DFE"
+                  method: "get"
+                - rel: "calls"
+                  uri: "/callbacks/B3EDFE83DF389DFE/calls"
+                  method: "get"
         401:
           description: "Username and Password is not correct"
         403:
@@ -82,8 +92,8 @@ paths:
           examples:
             application/json:
               id: "B3EDFE83DF389DFE"
-              name: "My awesome callback"
-              url: "https://www.apps.com/myapps"
+              name: "My Callback Server"
+              url: "https://www.myapplication.com/myapp"
               auth:
                 authType: "querystring"
                 key: ""
@@ -93,6 +103,16 @@ paths:
               callbacks:
                 reply: "enabled"
                 undeliverable: "enabled"
+              links:
+              - rel: "update"
+                uri: "/callbacks/B3EDFE83DF389DFE"
+                method: "put"
+              - rel: "self"
+                uri: "/callbacks/B3EDFE83DF389DFE"
+                method: "get"
+              - rel: "calls"
+                uri: "/callbacks/B3EDFE83DF389DFE/calls"
+                method: "get"
         401:
           description: "Username and Password is not correct"
         403:
@@ -131,8 +151,8 @@ paths:
           examples:
             application/json:
               id: "B3EDFE83DF389DFE"
-              name: "My awesome callback"
-              url: "https://www.apps.com/myapps"
+              name: "My Callback Server"
+              url: "https://www.myapplication.com/myapp"
               auth:
                 authType: "querystring"
                 key: ""
@@ -142,6 +162,16 @@ paths:
               callbacks:
                 reply: "enabled"
                 undeliverable: "enabled"
+              links:
+              - rel: "update"
+                uri: "/callbacks/B3EDFE83DF389DFE"
+                method: "put"
+              - rel: "self"
+                uri: "/callbacks/B3EDFE83DF389DFE"
+                method: "get"
+              - rel: "calls"
+                uri: "/callbacks/B3EDFE83DF389DFE/calls"
+                method: "get"
         401:
           description: "Username and Password is not correct"
         403:
@@ -321,7 +351,8 @@ paths:
                   content: "Yes, I accept. Will I need to bring steel cap boots?"
                 callback:
                   id: "B384FD38DCBADE38"
-                  url: "https://myurl.com/myapp"
+                  name: "My Callback Server"
+                  url: "https://www.myapplication.com/myapp"
                   attemptedDate: "09/01/13 13:22"
                   responseCode: 500
                   responseMessage: "Internal Server Error"
@@ -593,6 +624,8 @@ definitions:
         title: "The content in the response"
   call_callback:
     properties:
+      name:
+        type: "string"
       attemptedDate:
         type: "string"
       id:

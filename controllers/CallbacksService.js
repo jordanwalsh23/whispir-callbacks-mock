@@ -11,8 +11,8 @@ exports.callbacksGet = function(args, res, next) {
   "status" : "1 to 1 of 1",
   "callbacks" : [ {
     "id" : "B3EDFE83DF389DFE",
-    "name" : "My awesome callback",
-    "url" : "https://www.apps.com/myapps",
+    "name" : "My Callback Server",
+    "url" : "https://www.myapplication.com/myapp",
     "auth" : {
       "authType" : "querystring",
       "key" : ""
@@ -23,7 +23,20 @@ exports.callbacksGet = function(args, res, next) {
     "callbacks" : {
       "reply" : "enabled",
       "undeliverable" : "enabled"
-    }
+    },
+    "links" : [ {
+      "rel" : "update",
+      "uri" : "/callbacks/B3EDFE83DF389DFE",
+      "method" : "put"
+    }, {
+      "rel" : "self",
+      "uri" : "/callbacks/B3EDFE83DF389DFE",
+      "method" : "get"
+    }, {
+      "rel" : "calls",
+      "uri" : "/callbacks/B3EDFE83DF389DFE/calls",
+      "method" : "get"
+    } ]
   } ]
 };
   
@@ -48,8 +61,8 @@ exports.callbacksPost = function(args, res, next) {
   var examples = {};
   examples['application/json'] = {
   "id" : "B3EDFE83DF389DFE",
-  "name" : "My awesome callback",
-  "url" : "https://www.apps.com/myapps",
+  "name" : "My Callback Server",
+  "url" : "https://www.myapplication.com/myapp",
   "auth" : {
     "authType" : "querystring",
     "key" : ""
@@ -60,7 +73,20 @@ exports.callbacksPost = function(args, res, next) {
   "callbacks" : {
     "reply" : "enabled",
     "undeliverable" : "enabled"
-  }
+  },
+  "links" : [ {
+    "rel" : "update",
+    "uri" : "/callbacks/B3EDFE83DF389DFE",
+    "method" : "put"
+  }, {
+    "rel" : "self",
+    "uri" : "/callbacks/B3EDFE83DF389DFE",
+    "method" : "get"
+  }, {
+    "rel" : "calls",
+    "uri" : "/callbacks/B3EDFE83DF389DFE/calls",
+    "method" : "get"
+  } ]
 };
   
   if(Object.keys(examples).length > 0) {
@@ -84,8 +110,8 @@ exports.callbacksCallbackIdGet = function(args, res, next) {
   var examples = {};
   examples['application/json'] = {
   "id" : "B3EDFE83DF389DFE",
-  "name" : "My awesome callback",
-  "url" : "https://www.apps.com/myapps",
+  "name" : "My Callback Server",
+  "url" : "https://www.myapplication.com/myapp",
   "auth" : {
     "authType" : "querystring",
     "key" : ""
@@ -96,7 +122,20 @@ exports.callbacksCallbackIdGet = function(args, res, next) {
   "callbacks" : {
     "reply" : "enabled",
     "undeliverable" : "enabled"
-  }
+  },
+  "links" : [ {
+    "rel" : "update",
+    "uri" : "/callbacks/B3EDFE83DF389DFE",
+    "method" : "put"
+  }, {
+    "rel" : "self",
+    "uri" : "/callbacks/B3EDFE83DF389DFE",
+    "method" : "get"
+  }, {
+    "rel" : "calls",
+    "uri" : "/callbacks/B3EDFE83DF389DFE/calls",
+    "method" : "get"
+  } ]
 };
   
   if(Object.keys(examples).length > 0) {
