@@ -11,10 +11,6 @@ host: "whispir-callbacks-mock.herokuapp.com"
 basePath: "/"
 schemes:
 - "https"
-consumes:
-- "application/vnd.whispir.api-callback-v1+json"
-produces:
-- "application/vnd.whispir.api-callback-v1+json"
 paths:
   /callbacks:
     get:
@@ -22,6 +18,10 @@ paths:
       - "callbacks"
       summary: "Retrieve a listing of callbacks from the API"
       operationId: "callbacksGet"
+      consumes:
+      - "application/vnd.whispir.api-callback-v1+json"
+      produces:
+      - "application/vnd.whispir.api-callback-v1+json"
       parameters: []
       responses:
         200:
@@ -63,6 +63,10 @@ paths:
       - "callbacks"
       summary: "Create a new callback endpoint for Whispir to communicate with"
       operationId: "callbacksPost"
+      consumes:
+      - "application/vnd.whispir.api-callback-v1+json"
+      produces:
+      - "application/vnd.whispir.api-callback-v1+json"
       parameters:
       - in: "body"
         name: "callback"
@@ -109,6 +113,10 @@ paths:
       - "callbacks"
       summary: "Retrieve a listing of callbacks from the API"
       operationId: "callbacksCallbackIdGet"
+      consumes:
+      - "application/vnd.whispir.api-callback-v1+json"
+      produces:
+      - "application/vnd.whispir.api-callback-v1+json"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -153,6 +161,10 @@ paths:
       - "callbacks"
       summary: "Update an existing callback endpoint"
       operationId: "callbacksCallbackIdPut"
+      consumes:
+      - "application/vnd.whispir.api-callback-v1+json"
+      produces:
+      - "application/vnd.whispir.api-callback-v1+json"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -210,6 +222,156 @@ paths:
       - Username and Password: []
       - API Key: []
       x-swagger-router-controller: "Callbacks"
+  /callbacks/{callbackId}/calls:
+    get:
+      tags:
+      - "calls"
+      summary: "Get the list of notification calls made by the callback"
+      description: "Provides the listing of notification calls made by callback to\
+        \ inform the client server"
+      operationId: "callbacksCallbackIdCallsGet"
+      consumes:
+      - "application/vnd.whispir.api-call-v1+json"
+      produces:
+      - "application/vnd.whispir.api-call-v1+json"
+      parameters:
+      - name: "callbackId"
+        in: "path"
+        description: "The callback Id whose calls we need to retrieve.\n"
+        required: true
+        type: "string"
+      - name: "searchCriteria"
+        in: "query"
+        description: "Allows the user to define the category of search criteria being\
+          \ looked up.  The keys allowed are `messageID` and `status`.\n"
+        required: false
+        type: "string"
+        default: "status"
+      - name: "searchValue"
+        in: "query"
+        description: "Allows the user to specify search content to search the responses\
+          \ for.\n"
+        required: false
+        type: "string"
+        default: "FAILED"
+      - name: "criteriaFromDate"
+        in: "query"
+        description: "The start date value.  This filters and retrieves only the calls\
+          \ on or after this date.\n"
+        required: false
+        type: "string"
+        default: "dd/mm/yyyy"
+      - name: "criteriaFromTime"
+        in: "query"
+        description: "The start time value in 24hrs format.  This filters and retrieves\
+          \ only the calls on or before this time.\n"
+        required: false
+        type: "string"
+        default: "HH:mm"
+      - name: "criteriaToDate"
+        in: "query"
+        description: "The end date value.  This filters and retrieves only the calls\
+          \ on or after this date.\n"
+        required: false
+        type: "string"
+        default: "dd/mm/yyyy"
+      - name: "criteriaToTime"
+        in: "query"
+        description: "The end time value in 24hrs format.  This filters and retrieves\
+          \ only the calls on or before his time.\n"
+        required: false
+        type: "string"
+        default: "HH:mm"
+      - name: "limit"
+        in: "query"
+        description: "The number of templates to return.  Default 20.\n"
+        required: false
+        type: "string"
+        default: "20"
+      - name: "offset"
+        in: "query"
+        description: "The search result to start retuning results from.  Default 0.\n"
+        required: false
+        type: "string"
+        default: "0"
+      responses:
+        200:
+          description: "An array of call objects"
+          schema:
+            $ref: "#/definitions/callArray"
+          examples:
+            application/vnd.whispir.api-call-v1+json:
+              status: "1 to 1 of 1"
+              call:
+              - id: "B3EDFE83DF389DFE"
+                messageId: "ABC4857BCCF484575FCA"
+                messageLocation: "https://api.whispir.com/messages/ABC4857BCCF484575FCA"
+                from:
+                  name: "Fred Waters"
+                  mri: "Fred_Waters.528798.Sandbox@Contact.whispir.com"
+                  mobile: "+1000000000"
+                  email: ""
+                  voice: ""
+                responseMessage:
+                  channel: "SMS"
+                  acknowledged: "09/01/13 13:22"
+                  content: "Yes, I accept. Will I need to bring steel cap boots?"
+                link:
+                - rel: "updateCall"
+                  uri: "/callbacks/B3EDFE83DF389DFE/calls/B3EDFE83DF389DFE"
+                  method: "PUT"
+        401:
+          description: "Username and Password is not correct\n"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again.'/callbacks/{callbackId}/calls'\n"
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Calls"
+    put:
+      tags:
+      - "calls"
+      summary: "Updates the call status for a given list of call ID's"
+      description: "Updates the provided list of call(s) status to \"PROCESSED\"\n"
+      operationId: "callbacksCallbackIdCallsPut"
+      consumes:
+      - "application/vnd.whispir.api-call-v1+json"
+      produces:
+      - "application/vnd.whispir.api-call-v1+json"
+      parameters:
+      - name: "callbackId"
+        in: "path"
+        description: "The callback object to be created."
+        required: true
+        type: "string"
+      - name: "id"
+        in: "query"
+        description: "The ID of the call item whose status has to be set to\n\"PROCESSED\"\
+          .  Sent as ?id[]=1. Multiple ID's can also be sent as\n?id[]=1&id[]=2&id[]=3\n"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        204:
+          description: "The call status has been updated"
+        401:
+          description: "Username and Password is not correct\n"
+        403:
+          description: "No permission to access this resource, or API key incorrect/not\
+            \ provided\n"
+        504:
+          description: "Request took greater than 20s to complete out. Please try\
+            \ again."
+      security:
+      - Username and Password: []
+      - API Key: []
+      x-swagger-router-controller: "Calls"
 securityDefinitions:
   Username and Password:
     description: "The Username and Password of the Whispir user that is accessing\
@@ -340,6 +502,40 @@ definitions:
         - "enabled"
         - "disabled"
     title: "The types of callback that should be used for this callback"
+  callArray:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        title: "the number of results returned"
+      calls:
+        type: "array"
+        items:
+          $ref: "#/definitions/call"
+      link:
+        type: "array"
+        items:
+          $ref: "#/definitions/link"
+  call:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        title: "The ID of the call object"
+      messageId:
+        type: "string"
+        title: "The ID of the message to which call belong to"
+      messageLocation:
+        type: "string"
+        title: "The location url of the message to which call belong to"
+      from:
+        $ref: "#/definitions/call_from"
+      responseMessage:
+        $ref: "#/definitions/call_responseMessage"
+      link:
+        type: "array"
+        items:
+          $ref: "#/definitions/link"
   link:
     type: "object"
     properties:
@@ -353,3 +549,34 @@ definitions:
         type: "string"
         title: "The HTTP Method that should be used when accessing this object."
     title: "The reference links for this object"
+  call_from:
+    properties:
+      voice:
+        type: "string"
+        title: "The mobile number from which the voice call was received"
+      mri:
+        type: "string"
+        title: "mri of the sender. Only applicable when the sender is a contact or\
+          \ user in Whispir"
+      name:
+        type: "string"
+        title: "name of the sender. Only applicable when the sender is a contact or\
+          \ user in Whispir"
+      mobile:
+        type: "string"
+        title: "The mobile number from which the SMS was replied"
+      email:
+        type: "string"
+        title: "The email from which the response was recevived"
+  call_responseMessage:
+    properties:
+      acknowledged:
+        type: "string"
+        title: "The date and time at which the response was received"
+      channel:
+        type: "string"
+        title: "The channel from which the response was received. Possible values\
+          \ are SMS, EMAIL, VOICE"
+      content:
+        type: "string"
+        title: "The content in the response"
