@@ -16,6 +16,31 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
   
   
   var examples = {};
+  examples['application/json'] = {
+  "status" : "1 to 1 of 1",
+  "call" : [ {
+    "id" : "B3EDFE83DF389DFE",
+    "messageId" : "ABC4857BCCF484575FCA",
+    "messageLocation" : "https://api.whispir.com/messages/ABC4857BCCF484575FCA",
+    "from" : {
+      "name" : "Fred Waters",
+      "mri" : "Fred_Waters.528798.Sandbox@Contact.whispir.com",
+      "mobile" : "+1000000000",
+      "email" : "",
+      "voice" : ""
+    },
+    "responseMessage" : {
+      "channel" : "SMS",
+      "acknowledged" : "09/01/13 13:22",
+      "content" : "Yes, I accept. Will I need to bring steel cap boots?"
+    },
+    "link" : [ {
+      "rel" : "updateCall",
+      "uri" : "/callbacks/B3EDFE83DF389DFE/calls/B3EDFE83DF389DFE",
+      "method" : "PUT"
+    } ]
+  } ]
+};
   
   if(Object.keys(examples).length > 0) {
     res.setHeader('Content-Type', 'application/json');

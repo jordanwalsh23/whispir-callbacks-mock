@@ -19,9 +19,9 @@ paths:
       summary: "Retrieve a listing of callbacks from the API"
       operationId: "callbacksGet"
       consumes:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       produces:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       parameters: []
       responses:
         200:
@@ -29,7 +29,7 @@ paths:
           schema:
             $ref: "#/definitions/callbackArray"
           examples:
-            application/vnd.whispir.api-callback-v1+json:
+            application/json:
               status: "1 to 1 of 1"
               callbacks:
               - id: "B3EDFE83DF389DFE"
@@ -64,9 +64,9 @@ paths:
       summary: "Create a new callback endpoint for Whispir to communicate with"
       operationId: "callbacksPost"
       consumes:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       produces:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       parameters:
       - in: "body"
         name: "callback"
@@ -80,7 +80,7 @@ paths:
           schema:
             $ref: "#/definitions/callbackResponse"
           examples:
-            application/vnd.whispir.api-callback-v1+json:
+            application/json:
               id: "B3EDFE83DF389DFE"
               name: "My awesome callback"
               url: "https://www.apps.com/myapps"
@@ -114,9 +114,9 @@ paths:
       summary: "Retrieve a listing of callbacks from the API"
       operationId: "callbacksCallbackIdGet"
       consumes:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       produces:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -129,7 +129,7 @@ paths:
           schema:
             $ref: "#/definitions/callbackResponse"
           examples:
-            application/vnd.whispir.api-callback-v1+json:
+            application/json:
               id: "B3EDFE83DF389DFE"
               name: "My awesome callback"
               url: "https://www.apps.com/myapps"
@@ -162,9 +162,9 @@ paths:
       summary: "Update an existing callback endpoint"
       operationId: "callbacksCallbackIdPut"
       consumes:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       produces:
-      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/json"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -231,9 +231,9 @@ paths:
         \ inform the client server"
       operationId: "callbacksCallbackIdCallsGet"
       consumes:
-      - "application/vnd.whispir.api-call-v1+json"
+      - "application/json"
       produces:
-      - "application/vnd.whispir.api-call-v1+json"
+      - "application/json"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -300,7 +300,7 @@ paths:
           schema:
             $ref: "#/definitions/callArray"
           examples:
-            application/vnd.whispir.api-call-v1+json:
+            application/json:
               status: "1 to 1 of 1"
               call:
               - id: "B3EDFE83DF389DFE"
@@ -339,9 +339,9 @@ paths:
       description: "Updates the provided list of call(s) status to \"PROCESSED\"\n"
       operationId: "callbacksCallbackIdCallsPut"
       consumes:
-      - "application/vnd.whispir.api-call-v1+json"
+      - "application/json"
       produces:
-      - "application/vnd.whispir.api-call-v1+json"
+      - "application/json"
       parameters:
       - name: "callbackId"
         in: "path"
