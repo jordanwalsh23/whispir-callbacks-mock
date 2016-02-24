@@ -1,7 +1,28 @@
 ---
 swagger: "2.0"
 info:
-  description: "Create and manage callbacks using Whispir's Communications API"
+  description: "Whispir's Callback functionality allows customers applications to\
+    \ receive responses to messages directly to their applications via a JSON or XML\
+    \ POST request from Whispir.\n\nCustomers can provide a URL to Whispir, and specify\
+    \ an authorization header or query parameter to provide Whispir authorization\
+    \ to access the provided callback service.\n\nCustomers can use this API to create\
+    \ new callback services, and update or delete existing callback services.\n\n\
+    Callbacks can be invoked by including the supplied `callbackName` parameter in\
+    \ the request to the `messages` endpoint. \n\nFor example:\n\n```\n  POST https://api.whispir.com/messages?apikey=abc123\n\
+    \  \n  {\n    \"to\" : \"61400000000\",\n    \"subject\" : \"Demonstration Message\"\
+    ,\n    \"body\" : \"This is the sample SMS Content\",\n    \"callbackId\" : \"\
+    My Callback Service\"\n  }\n```\n\nEvery attempt to POST information to the callback\
+    \ URL is stored as a `call` against the particular Callback record.\n\nCustomers\
+    \ can query this information by making a `GET` request to the `/callbacks/{id}/calls`\
+    \ endpoint.  This provides a list of both processed and failed calls to the specified\
+    \ callback.\n\nIn the event the customer would like to reprocess any failed callbacks\
+    \ in their system, they can consume the information using the `calls` endpoint,\
+    \ and once successfully processed, the particular call can be updated using the\
+    \ `PUT /callbacks/{id}/calls?id[]={id}` endpoint.\n\nMaking this update will update\
+    \ the status of the provided `call` IDs to `PROCESSED` so these will not be returned\
+    \ with the next query for failed calls.\n\nMore information about Whispir's API\
+    \ Callbacks functionality can be found in the Whispir API Documentation available\
+    \ at https://whispir.github.io/api.\n"
   version: "1.0.0"
   title: "Whispir Callbacks APIs"
   x-gist-id: "797bfa590a3de304ee68"
@@ -40,7 +61,7 @@ paths:
                   key: ""
                 contentType: "json"
                 removeHTML: "disabled"
-                email: "jwalsh@whispir.com"
+                email: "jsmith@example.com"
                 callbacks:
                   reply: "enabled"
                   undeliverable: "enabled"
@@ -99,7 +120,7 @@ paths:
                 key: ""
               contentType: "json"
               removeHTML: "disabled"
-              email: "jwalsh@whispir.com"
+              email: "jsmith@example.com"
               callbacks:
                 reply: "enabled"
                 undeliverable: "enabled"
@@ -158,7 +179,7 @@ paths:
                 key: ""
               contentType: "json"
               removeHTML: "disabled"
-              email: "jwalsh@whispir.com"
+              email: "jsmith@example.com"
               callbacks:
                 reply: "enabled"
                 undeliverable: "enabled"

@@ -19,7 +19,7 @@ exports.callbacksGet = function(args, res, next) {
     },
     "contentType" : "json",
     "removeHTML" : "disabled",
-    "email" : "jwalsh@whispir.com",
+    "email" : "jsmith@example.com",
     "callbacks" : {
       "reply" : "enabled",
       "undeliverable" : "enabled"
@@ -69,7 +69,7 @@ exports.callbacksPost = function(args, res, next) {
   },
   "contentType" : "json",
   "removeHTML" : "disabled",
-  "email" : "jwalsh@whispir.com",
+  "email" : "jsmith@example.com",
   "callbacks" : {
     "reply" : "enabled",
     "undeliverable" : "enabled"
@@ -118,7 +118,7 @@ exports.callbacksCallbackIdGet = function(args, res, next) {
   },
   "contentType" : "json",
   "removeHTML" : "disabled",
-  "email" : "jwalsh@whispir.com",
+  "email" : "jsmith@example.com",
   "callbacks" : {
     "reply" : "enabled",
     "undeliverable" : "enabled"
