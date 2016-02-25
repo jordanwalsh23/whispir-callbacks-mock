@@ -14,13 +14,13 @@ info:
     My Callback Service\"\n  }\n```\n\nEvery attempt to POST information to the callback\
     \ URL is stored as a `call` against the particular Callback record.\n\nCustomers\
     \ can query this information by making a `GET` request to the `/callbacks/{id}/calls`\
-    \ endpoint.  This provides a list of both processed and failed calls to the specified\
-    \ callback.\n\nIn the event the customer would like to reprocess any failed callbacks\
+    \ endpoint.  This provides a list of both SUCCESS and FAILED calls to the specified\
+    \ callback.\n\nIn the event the customer would like to reprocess any FAILED callbacks\
     \ in their system, they can consume the information using the `calls` endpoint,\
-    \ and once successfully processed, the particular call can be updated using the\
+    \ and once successfully SUCCESS, the particular call can be updated using the\
     \ `PUT /callbacks/{id}/calls?id[]={id}` endpoint.\n\nMaking this update will update\
-    \ the status of the provided `call` IDs to `PROCESSED` so these will not be returned\
-    \ with the next query for failed calls.\n\nMore information about Whispir's API\
+    \ the status of the provided `call` IDs to `SUCCESS` so these will not be returned\
+    \ with the next query for FAILED calls.\n\nMore information about Whispir's API\
     \ Callbacks functionality can be found in the Whispir API Documentation available\
     \ at https://whispir.github.io/api.\n"
   version: "1.0.0"
@@ -397,7 +397,7 @@ paths:
       tags:
       - "calls"
       summary: "Updates the call status for a given list of call ID's"
-      description: "Updates the provided list of call(s) status to \"PROCESSED\"\n"
+      description: "Updates the provided list of call(s) status to \"SUCCESS\"\n"
       operationId: "callbacksCallbackIdCallsPut"
       consumes:
       - "application/json"
@@ -411,13 +411,19 @@ paths:
         type: "string"
       - name: "id"
         in: "query"
-        description: "The ID of the call item whose status has to be set to\n\"PROCESSED\"\
+        description: "The ID of the call item whose status has to be set to\n\"SUCCESS\"\
           .  Sent as ?id[]=1. Multiple ID's can also be sent as\n?id[]=1&id[]=2&id[]=3\n"
         required: true
         type: "array"
         items:
           type: "string"
         collectionFormat: "multi"
+      - in: "body"
+        name: "status"
+        description: "The status to update the callback to"
+        required: true
+        schema:
+          $ref: "#/definitions/callStatus"
       responses:
         204:
           description: "The call status has been updated"
@@ -599,6 +605,16 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/link"
+  callStatus:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        enum:
+        - "SUCCESS"
+        - "FAILED"
+        default: "SUCCESS"
+    title: "The status of the call"
   link:
     type: "object"
     properties:

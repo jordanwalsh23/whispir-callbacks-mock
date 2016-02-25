@@ -66,6 +66,7 @@ exports.callbacksCallbackIdCallsPut = function(args, res, next) {
    * parameters expected in the args:
   * callbackId (String)
   * id (List)
+  * status (CallStatus)
   **/
   // no response value expected for this operation
   
