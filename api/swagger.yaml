@@ -20,9 +20,12 @@ info:
     \ and once successfully SUCCESS, the particular call can be updated using the\
     \ `PUT /callbacks/{id}/calls?id[]={id}` endpoint.\n\nMaking this update will update\
     \ the status of the provided `call` IDs to `SUCCESS` so these will not be returned\
-    \ with the next query for FAILED calls.\n\nMore information about Whispir's API\
-    \ Callbacks functionality can be found in the Whispir API Documentation available\
-    \ at https://whispir.github.io/api.\n"
+    \ with the next query for FAILED calls.\n\n*Note:* This swagger definition references\
+    \ `applications/json` as the content type that should be used.  In a production\
+    \ capacity, the actual Accept and Content-Type headers should be:\n\n- `application/vnd.whispir.api-callback-v1+json`\
+    \ for Callbacks endpoints\n- `application/vnd.whispir.api-call-v1+json` for Calls\
+    \ endpoints\n\nMore information about Whispir's API Callbacks functionality can\
+    \ be found in the Whispir API Documentation available at https://whispir.github.io/api.\n"
   version: "1.0.0"
   title: "Whispir Callbacks APIs"
   x-gist-id: "797bfa590a3de304ee68"
