@@ -39,8 +39,8 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
       "name" : "My Callback Server",
       "url" : "https://www.myapplication.com/myapp",
       "attemptedDate" : "09/01/13 13:22",
-      "responseCode" : 500,
-      "responseMessage" : "Internal Server Error"
+      "statusCode" : 500,
+      "statusMessage" : "Internal Server Error"
     },
     "link" : [ {
       "rel" : "updateCall",

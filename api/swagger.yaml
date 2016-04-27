@@ -26,7 +26,7 @@ info:
     \ for Callbacks endpoints\n- `application/vnd.whispir.api-call-v1+json` for Calls\
     \ endpoints\n\nMore information about Whispir's API Callbacks functionality can\
     \ be found in the Whispir API Documentation available at https://whispir.github.io/api.\n"
-  version: "1.0.0"
+  version: "1.0.1"
   title: "Whispir Callbacks APIs"
   x-gist-id: "797bfa590a3de304ee68"
   x-gist-filename: "callbacks-api-swagger.json"
@@ -60,9 +60,10 @@ paths:
                 name: "My Callback Server"
                 url: "https://www.myapplication.com/myapp"
                 auth:
-                  authType: "querystring"
+                  type: "querystring"
                   key: ""
                 contentType: "json"
+                retriesEnabled: true
                 removeHTML: "disabled"
                 email: "jsmith@example.com"
                 callbacks:
@@ -91,7 +92,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Callbacks"
+      x-swagger-router-controller: "callbacks"
     post:
       tags:
       - "callbacks"
@@ -119,9 +120,10 @@ paths:
               name: "My Callback Server"
               url: "https://www.myapplication.com/myapp"
               auth:
-                authType: "querystring"
+                type: "querystring"
                 key: ""
               contentType: "json"
+              retriesEnabled: true
               removeHTML: "disabled"
               email: "jsmith@example.com"
               callbacks:
@@ -150,7 +152,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Callbacks"
+      x-swagger-router-controller: "callbacks"
   /callbacks/{callbackId}:
     get:
       tags:
@@ -178,9 +180,10 @@ paths:
               name: "My Callback Server"
               url: "https://www.myapplication.com/myapp"
               auth:
-                authType: "querystring"
+                type: "querystring"
                 key: ""
               contentType: "json"
+              retriesEnabled: true
               removeHTML: "disabled"
               email: "jsmith@example.com"
               callbacks:
@@ -209,7 +212,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Callbacks"
+      x-swagger-router-controller: "callbacks"
     put:
       tags:
       - "callbacks"
@@ -247,7 +250,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Callbacks"
+      x-swagger-router-controller: "callbacks"
     delete:
       tags:
       - "callbacks"
@@ -275,7 +278,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Callbacks"
+      x-swagger-router-controller: "callbacks"
   /callbacks/{callbackId}/calls:
     get:
       tags:
@@ -378,8 +381,8 @@ paths:
                   name: "My Callback Server"
                   url: "https://www.myapplication.com/myapp"
                   attemptedDate: "09/01/13 13:22"
-                  responseCode: 500
-                  responseMessage: "Internal Server Error"
+                  statusCode: 500
+                  statusMessage: "Internal Server Error"
                 link:
                 - rel: "updateCall"
                   uri: "/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE"
@@ -395,7 +398,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Calls"
+      x-swagger-router-controller: "calls"
     put:
       tags:
       - "calls"
@@ -441,7 +444,7 @@ paths:
       security:
       - Username and Password: []
       - API Key: []
-      x-swagger-router-controller: "Calls"
+      x-swagger-router-controller: "calls"
 securityDefinitions:
   Username and Password:
     description: "The Username and Password of the Whispir user that is accessing\
@@ -499,6 +502,9 @@ definitions:
         enum:
         - "json"
         - "xml"
+      retriesEnabled:
+        type: "boolean"
+        title: "Option to enable or disable retries"
       removeHTML:
         type: "string"
         title: "Option to keep or remove HTML from email responses"
@@ -545,9 +551,9 @@ definitions:
   auth:
     type: "object"
     properties:
-      authType:
+      type:
         type: "string"
-        title: "The required authtype"
+        title: "The required type"
         enum:
         - "querystring"
         - "httpheader"
@@ -670,10 +676,10 @@ definitions:
         type: "string"
       id:
         type: "string"
-      responseMessage:
-        type: "string"
       url:
         type: "string"
-      responseCode:
+      statusMessage:
+        type: "string"
+      statusCode:
         type: "number"
         format: "int32"
