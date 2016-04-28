@@ -618,7 +618,7 @@ definitions:
         items:
           $ref: "#/definitions/link"
     xml:
-      name: "companyapicall"
+      name: "call"
       namespace: "http://schemas.api.whispir.com"
       prefix: "ns2"
   callStatus:
@@ -632,7 +632,7 @@ definitions:
         default: "SUCCESS"
     title: "The status of the call"
     xml:
-      name: "companyapicallstatus"
+      name: "call"
       namespace: "http://schemas.api.whispir.com"
       prefix: "ns2"
   link:
