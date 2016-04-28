@@ -4,14 +4,11 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
   /**
    * parameters expected in the args:
   * callbackId (String)
-  * searchCriteria (String)
-  * searchValue (String)
-  * criteriaFromDate (String)
-  * criteriaFromTime (String)
-  * criteriaToDate (String)
-  * criteriaToTime (String)
-  * limit (String)
-  * offset (String)
+  * status (String)
+  * attemptedDate (date)
+  * statusCode (BigDecimal)
+  * statusMessage (String)
+  * messageId (String)
   **/
   
   

@@ -42,10 +42,9 @@ paths:
       - "callbacks"
       summary: "Retrieve a listing of callbacks from the API"
       operationId: "callbacksGet"
-      consumes:
-      - "application/json"
       produces:
-      - "application/json"
+      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/vnd.whispir.api-callback-v1+xml"
       parameters: []
       responses:
         200:
@@ -99,9 +98,11 @@ paths:
       summary: "Create a new callback endpoint for Whispir to communicate with"
       operationId: "callbacksPost"
       consumes:
-      - "application/json"
+      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/vnd.whispir.api-callback-v1+xml"
       produces:
-      - "application/json"
+      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/vnd.whispir.api-callback-v1+xml"
       parameters:
       - in: "body"
         name: "callback"
@@ -159,10 +160,9 @@ paths:
       - "callbacks"
       summary: "Retrieve a listing of callbacks from the API"
       operationId: "callbacksCallbackIdGet"
-      consumes:
-      - "application/json"
       produces:
-      - "application/json"
+      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/vnd.whispir.api-callback-v1+xml"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -219,9 +219,11 @@ paths:
       summary: "Update an existing callback endpoint"
       operationId: "callbacksCallbackIdPut"
       consumes:
-      - "application/json"
+      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/vnd.whispir.api-callback-v1+xml"
       produces:
-      - "application/json"
+      - "application/vnd.whispir.api-callback-v1+json"
+      - "application/vnd.whispir.api-callback-v1+xml"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -287,73 +289,40 @@ paths:
       description: "Provides the listing of notification calls made by callback to\
         \ inform the client server"
       operationId: "callbacksCallbackIdCallsGet"
-      consumes:
-      - "application/json"
       produces:
-      - "application/json"
+      - "application/vnd.whispir.api-call-v1+json"
+      - "application/vnd.whispir.api-call-v1+xml"
       parameters:
       - name: "callbackId"
         in: "path"
         description: "The callback Id whose calls we need to retrieve.\n"
         required: true
         type: "string"
-      - name: "searchCriteria"
+      - name: "status"
         in: "query"
-        description: "Allows the user to define the category of search criteria being\
-          \ looked up.  The keys allowed are `messageID` and `status`.\n"
         required: false
         type: "string"
-        default: "status"
         enum:
-        - "messageId"
-        - "status"
-      - name: "searchValue"
+        - "success"
+        - "failed"
+      - name: "attemptedDate"
         in: "query"
-        description: "Allows the user to specify search content to search the responses\
-          \ for.\n"
         required: false
         type: "string"
-        default: "FAILED"
-      - name: "criteriaFromDate"
+        format: "date"
+      - name: "statusCode"
         in: "query"
-        description: "The start date value.  This filters and retrieves only the calls\
-          \ on or after this date.\n"
+        required: false
+        type: "number"
+        format: "int32"
+      - name: "statusMessage"
+        in: "query"
         required: false
         type: "string"
-        default: "dd/mm/yyyy"
-      - name: "criteriaFromTime"
+      - name: "messageId"
         in: "query"
-        description: "The start time value in 24hrs format.  This filters and retrieves\
-          \ only the calls on or before this time.\n"
         required: false
         type: "string"
-        default: "HH:mm"
-      - name: "criteriaToDate"
-        in: "query"
-        description: "The end date value.  This filters and retrieves only the calls\
-          \ on or after this date.\n"
-        required: false
-        type: "string"
-        default: "dd/mm/yyyy"
-      - name: "criteriaToTime"
-        in: "query"
-        description: "The end time value in 24hrs format.  This filters and retrieves\
-          \ only the calls on or before his time.\n"
-        required: false
-        type: "string"
-        default: "HH:mm"
-      - name: "limit"
-        in: "query"
-        description: "The number of templates to return.  Default 20.\n"
-        required: false
-        type: "string"
-        default: "20"
-      - name: "offset"
-        in: "query"
-        description: "The search result to start retuning results from.  Default 0.\n"
-        required: false
-        type: "string"
-        default: "0"
       responses:
         200:
           description: "An array of call objects"
