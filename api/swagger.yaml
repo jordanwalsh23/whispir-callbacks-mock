@@ -356,6 +356,10 @@ paths:
                 - rel: "updateCall"
                   uri: "/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE"
                   method: "PUT"
+              link:
+              - rel: "next"
+                uri: "/callbacks/B384FD38DCBADE38/calls?limit=20&offset=20"
+                method: "GET"
         401:
           description: "Username and Password is not correct\n"
         403:
@@ -375,9 +379,8 @@ paths:
       description: "Updates the provided list of call(s) status to \"SUCCESS\"\n"
       operationId: "callbacksCallbackIdCallsPut"
       consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - "application/vnd.whispir.api-call-v1+json"
+      - "application/vnd.whispir.api-call-v1+xml"
       parameters:
       - name: "callbackId"
         in: "path"
@@ -618,7 +621,7 @@ definitions:
         items:
           $ref: "#/definitions/link"
     xml:
-      name: "call"
+      name: "companyapicall"
       namespace: "http://schemas.api.whispir.com"
       prefix: "ns2"
   callStatus:
@@ -632,7 +635,7 @@ definitions:
         default: "SUCCESS"
     title: "The status of the call"
     xml:
-      name: "call"
+      name: "companyapicallstatus"
       namespace: "http://schemas.api.whispir.com"
       prefix: "ns2"
   link:

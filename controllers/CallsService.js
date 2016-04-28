@@ -44,6 +44,11 @@ exports.callbacksCallbackIdCallsGet = function(args, res, next) {
       "uri" : "/callbacks/B384FD38DCBADE38/calls/B3EDFE83DF389DFE",
       "method" : "PUT"
     } ]
+  } ],
+  "link" : [ {
+    "rel" : "next",
+    "uri" : "/callbacks/B384FD38DCBADE38/calls?limit=20&offset=20",
+    "method" : "GET"
   } ]
 };
   
