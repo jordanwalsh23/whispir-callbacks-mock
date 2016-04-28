@@ -433,8 +433,14 @@ definitions:
         title: "the number of results returned"
       callbacks:
         type: "array"
+        xml:
+          prefix: "ns2"
         items:
           $ref: "#/definitions/callbackResponseSmall"
+    xml:
+      name: "return"
+      namespace: "http://schemas.api.whispir.com"
+      prefix: "ns2"
   callbackResponseSmall:
     type: "object"
     properties:
@@ -449,8 +455,13 @@ definitions:
         title: "The URL of the callback"
       link:
         type: "array"
+        xml:
+          prefix: "ns2"
         items:
           $ref: "#/definitions/link"
+    xml:
+      name: "callback"
+      prefix: "ns2"
   callbackResponse:
     type: "object"
     properties:
@@ -487,8 +498,15 @@ definitions:
         $ref: "#/definitions/callbackType"
       link:
         type: "array"
+        xml:
+          name: "link"
+          prefix: "ns2"
         items:
           $ref: "#/definitions/link"
+    xml:
+      name: "companyapicallback"
+      namespace: "http://schemas.api.whispir.com"
+      prefix: "ns2"
   callbackRequest:
     type: "object"
     properties:
@@ -517,6 +535,10 @@ definitions:
         title: "The email address to be notified when this callback fails."
       callbacks:
         $ref: "#/definitions/callbackType"
+    xml:
+      name: "companyapicallback"
+      namespace: "http://schemas.api.whispir.com"
+      prefix: "ns2"
   auth:
     type: "object"
     properties:
@@ -559,8 +581,14 @@ definitions:
           $ref: "#/definitions/call"
       link:
         type: "array"
+        xml:
+          prefix: "ns2"
         items:
           $ref: "#/definitions/link"
+    xml:
+      name: "return"
+      namespace: "http://schemas.api.whispir.com"
+      prefix: "ns2"
   call:
     type: "object"
     properties:
@@ -573,6 +601,12 @@ definitions:
       messageLocation:
         type: "string"
         title: "The location url of the message to which call belong to"
+      status:
+        type: "string"
+        title: "The Status of this particular callback attempt"
+        enum:
+        - "SUCCESS"
+        - "FAILED"
       from:
         $ref: "#/definitions/call_from"
       responseMessage:
@@ -583,6 +617,10 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/link"
+    xml:
+      name: "companyapicall"
+      namespace: "http://schemas.api.whispir.com"
+      prefix: "ns2"
   callStatus:
     type: "object"
     properties:
@@ -593,6 +631,10 @@ definitions:
         - "FAILED"
         default: "SUCCESS"
     title: "The status of the call"
+    xml:
+      name: "companyapicallstatus"
+      namespace: "http://schemas.api.whispir.com"
+      prefix: "ns2"
   link:
     type: "object"
     properties:
